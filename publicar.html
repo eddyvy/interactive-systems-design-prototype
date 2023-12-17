@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/rating.css">
   <link rel="icon" type="image/png" href="assets/img/diet.png">
+  <script type="text/javascript" src="assets/js/ingredients.js" ></script>
+  <script type="text/javascript" src="assets/js/category.js" ></script>
+  <script type="text/javascript" src="assets/js/rating.js" ></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>AEC | Las mejores recetas</title>
 </head>
 <body>
   <header style="overflow: hidden; height: 53px;">
-      <nav class="demo" class="pseudo button icon-picture">
+      <nav class="demo" class="pseudo button">
         <a href="#" class="brand">
           <img class="logo" src="assets/img/diet.png" />
           <span>AEC</span>
@@ -24,15 +28,105 @@
             <option>English</option>
             <option>French</option>
           </select>
-          <a href="buscar.html" class="pseudo button icon-picture">Descubrir</a>
-          <a href="publicar.html" class="button icon-puzzle">Publicar</a>
+          <a href="buscar.html" class="pseudo button">Descubrir</a>
+          <a href="publicar.html" class="pseudo button">Publicar</a>
         </div>
       </nav>
   </header>
   <main style="display: flex; flex-direction: column; align-items: center;">
     <h1 style="text-align: center;">¡Demuestra qué sabes!</h1>
+    <form id="publicarForm" class="half" style="padding-bottom: 40px;">
+      <input required name="title" placeholder="Título" type="text" style="margin: 8px;" />
+      <div style="display: flex; justify-content: center;">
+        <div style="width: 250px">
+          <label class="dropimage">
+            <input id="recipeImage" name="recipeImage" title="Drop image or click me" type="file">
+          </label>
+        </div>
+      </div>
+      <h6 style="margin: 7px 0;" class="stack">Categorías</h6>
+      <div id="inputCat"></div>
+      <h6 style="margin: 7px 0;" class="stack">Ingredientes</h6>
+      <div id="inputIng"></div>
+      <h6 style="margin: 7px 0;" class="stack">Coste</h6>
+      <div id="inputCos"></div>
+      <h6 style="margin: 7px 0;" class="stack">Dificultad</h6>
+      <div id="inputDif"></div>
+      <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+        <button class="pseudo" type="button" style="font-size: 0.75em;">
+          <i class="fa fa-bold" aria-hidden="true"></i>
+        </button>
+        <button class="pseudo" type="button" style="font-size: 0.75em;">
+          <i class="fa fa-italic" aria-hidden="true"></i>
+        </button>
+        <button class="pseudo" type="button" style="font-size: 0.75em;">
+          <i class="fa fa-font" aria-hidden="true"></i>
+        </button>
+        <button class="pseudo" type="button" style="font-size: 0.75em;">
+          <i class="fa fa-header" aria-hidden="true"></i>
+        </button>
+        <button class="pseudo" type="button" style="font-size: 0.75em;">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </button>
+        <button class="pseudo" type="button" style="font-size: 0.75em;">
+          <i class="fa fa-align-left" aria-hidden="true"></i>
+        </button>
+        <button class="pseudo" type="button" style="font-size: 0.75em;">
+          <i class="fa fa-align-center" aria-hidden="true"></i>
+        </button>
+        <button class="pseudo" type="button" style="font-size: 0.75em;">
+          <i class="fa fa-align-right" aria-hidden="true"></i>
+        </button>
+      </div>
+      <textarea rows="10" required name="procedimiento" placeholder="Procedimiento" type="text" style="margin: 8px;" ></textarea>
+      <div style="display: flex; justify-content: center;">
+        <button type="submit" for="publicarForm">
+          Subir
+        </button>
+      </div>
+    </form>
   </main>
 </body>
 <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    [].forEach.call(document.querySelectorAll('.dropimage'), function(img){
+      img.onchange = function(e){
+        const inputfile = this
+        const reader = new FileReader()
+        reader.onloadend = function(){
+          inputfile.style['background-image'] = 'url('+reader.result+')'
+        }
+        reader.readAsDataURL(e.target.files[0])
+      }
+    })
+  })
+
+  const inputCat = document.getElementById("inputCat")
+  inputCat.innerHTML += categoriesCheckboxes()
+
+  const inputIng = document.getElementById("inputIng")
+  inputIng.innerHTML += ingredientsCheckboxes()
+
+  const inputCos = document.getElementById("inputCos")
+  inputCos.innerHTML += createIconRating("inputSelCos", 0, "eur")
+
+  const inputDif = document.getElementById("inputDif")
+  inputDif.innerHTML += createIconRating("inputSelDif", 0, "fire")
+
+  const form = document.getElementById("publicarForm")
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    Swal.fire({
+      title: "¡Receta subida correctamente!",
+      text: "Procedemos a revisar los datos de la receta que has subido. Lo antes posible será publicada.",
+      icon: "success",
+      confirmButtonColor: "#0074D9"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.assign("buscar.html")
+      }
+    })
+  })
 </script>
 </html>
