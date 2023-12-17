@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  <link rel="icon" type="image/png" href="assets/diet.png">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>AEC | Las mejores recetas</title>
+</head>
+<body>
+  <header style="overflow: hidden; height: 53px;">
+      <nav class="demo" class="pseudo button icon-picture">
+        <a href="#" class="brand">
+          <img class="logo" src="assets/diet.png" />
+          <span>AEC</span>
+        </a>
+        <input id="bmenub" type="checkbox" class="show">
+        <label for="bmenub" class="burger pseudo button"><img src="assets/menu.svg" alt="Menu"/></label>
+        <div class="menu">
+          <select style="width: 110px;">
+            <option>Spanish</option>
+            <option>English</option>
+            <option>French</option>
+          </select>
+          <a href="index.html" class="pseudo button icon-picture">Acceder</a>
+          <a href="registro.html" class="button icon-puzzle">Registro</a>
+        </div>
+      </nav>
+  </header>
+  <main style="display: flex; flex-direction: column; align-items: center;">
+    <h1 style="text-align: center;">Todas las recetas a tu alcance</h1>
+    <h3>Accede</h3>
+    <form id="accederForm" class="third">
+      <input required name="email" placeholder="Email" type="email" style="margin: 8px;" />
+      <input required name="password" placeholder="Contraseña" type="password" style="margin: 8px;" />
+      <div style="display: flex; justify-content: center;">
+        <button type="submit" for="accederForm">Acceder</button>
+      </div>
+    </form>
+    <small><a href="registro.html">¿No tienes cuenta? Regístrate</a></small>
+    <small><a href="#" id="olvidado">¿Has olvidado tu contraseña? Pulsa aquí</a></small>
+  </main>
+</body>
+<script>
+  function handleSubmit(event) {
+    event.preventDefault()
+    const data = Object.fromEntries(new FormData(event.target))
+
+    if (data.email !== 'test@viu.com' || data.password !== '1234') {
+      Swal.fire({
+        title: "Email/Contraseña inválidos",
+        text: `Para este prototipo utiliza: Email "test@viu.com" y contraseña "1234"`,
+        icon: "error",
+        confirmButtonColor: "#0074D9"
+      })
+      return
+    }
+
+    window.location.assign("buscar.html")
+  }
+
+  function handleOlvido() {
+    Swal.fire({
+      title: "Recupera la contraseña",
+      text: "Escribe tu dirección de email",
+      confirmButtonColor: "#0074D9",
+      confirmButtonText: "Enviar",
+      input: "email",
+      inputAttributes: {
+        autocapitalize: "off"
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Email enviado",
+          text: `Se ha enviado un email a "${result.value}" con los pasos para recuperar tu contraseña`,
+          icon: "success",
+          confirmButtonColor: "#0074D9",
+        })
+      }
+    })
+  }
+
+  const form = document.getElementById("accederForm")
+  form.addEventListener("submit", handleSubmit)
+
+  const buttonOlvido = document.getElementById("olvidado")
+  buttonOlvido.addEventListener("click", handleOlvido)
+
+</script>
+</html>

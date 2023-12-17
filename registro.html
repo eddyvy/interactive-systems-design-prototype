@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  <link rel="icon" type="image/png" href="assets/diet.png">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>AEC | Las mejores recetas</title>
+</head>
+<body>
+  <header style="overflow: hidden; height: 53px;">
+      <nav class="demo" class="pseudo button icon-picture">
+        <a href="#" class="brand">
+          <img class="logo" src="assets/diet.png" />
+          <span>AEC</span>
+        </a>
+        <input id="bmenub" type="checkbox" class="show">
+        <label for="bmenub" class="burger pseudo button"><img src="assets/menu.svg" alt="Menu"/></label>
+        <div class="menu">
+          <select style="width: 110px;">
+            <option>Spanish</option>
+            <option>English</option>
+            <option>French</option>
+          </select>
+          <a href="index.html" class="pseudo button icon-picture">Acceder</a>
+          <a href="registro.html" class="button icon-puzzle">Registro</a>
+        </div>
+      </nav>
+  </header>
+  <main style="display: flex; flex-direction: column; align-items: center;">
+    <h1 style="text-align: center;">Únete a la Cookmunidad</h1>
+    <h3>Regístrate</h3>
+    <form id="accederForm" class="third">
+      <input required name="email" placeholder="Email" type="email" style="margin: 8px;" />
+      <input required name="password" placeholder="Contraseña" type="password" style="margin: 8px;" />
+      <input required name="repeatPassword" placeholder="Repita Contraseña" type="password" style="margin: 8px;" />
+      <div style="display: flex; justify-content: center;">
+        <button type="submit" for="accederForm">Registrarse</button>
+      </div>
+    </form>
+    <small><a href="index.html">¿Ya tienes cuenta? Accede</a></small>
+  </main>
+</body>
+<script>
+  function handleSubmit(event) {
+    event.preventDefault()
+    const data = Object.fromEntries(new FormData(event.target))
+
+    if (data.password !== data.repeatPassword) {
+      Swal.fire({
+      title: "Las contraseñas deben ser iguales",
+      text: "Las contraseñas introducidas no son la misma",
+      icon: "error",
+      confirmButtonColor: "#0074D9"
+    })
+      return
+    }
+
+    if (data.email === 'test@viu.com') {
+      Swal.fire({
+      title: "La cuenta ya existe",
+      text: "Este usuario ya se ha registrado",
+      icon: "error",
+      confirmButtonColor: "#0074D9"
+    })
+      return
+    }
+
+    Swal.fire({
+      title: "¡Registrado correctamente!",
+      text: "Revisa tu correo electrónico para validar el registro",
+      icon: "success",
+      confirmButtonColor: "#0074D9"
+    })
+  }
+
+  const form = document.getElementById("accederForm")
+  form.addEventListener("submit", handleSubmit)
+</script>
+</html>
