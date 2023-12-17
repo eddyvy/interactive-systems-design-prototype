@@ -20,11 +20,12 @@
 .rating__label {
   cursor: pointer;
   padding: 0 0.3em;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .rating__label-star {
   padding: 0 0.1em;
+  font-size: 1.5rem;
 }
 
 .rating__label--half {
