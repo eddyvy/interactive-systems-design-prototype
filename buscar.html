@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="assets/css/rating.css">
   <link rel="icon" type="image/png" href="assets/img/diet.png">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script type="text/javascript" src="assets/js/index.js" ></script>
+  <script type="text/javascript" src="assets/js/ingredients.js" ></script>
+  <script type="text/javascript" src="assets/js/rating.js" ></script>
+  <script type="text/javascript" src="assets/js/recipes.js" ></script>
   <title>AEC | Las mejores recetas</title>
   <style>
     .img-card {
@@ -46,22 +48,59 @@
         </div>
       </nav>
   </header>
-  <main style="display: flex; flex-direction: column; align-items: center;">
-    <h1 style="text-align: center;">Encuentra tu receta ideal</h1>
-    <div style="display: flex; align-items: center; gap: 5px;">
-      <label><input type="text" placeholder="Buscar"/></label>
-      <button style="border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i></button>
-    </div>
-    <div id="recipes" class="recipes">
-    </div>
-  </main>
+  <div style="display: flex;">
+    <sidebar id="sidebar" style="flex: 0.2; height: 100%; padding-left: 40px;">
+      <h4 class="stack">Filtros</h4>
+      <h6 style="margin: 7px 0;" class="stack">Ingredientes</h6>
+      <div id="filroIng"></div>
+      <h6 style="margin: 7px 0;" class="stack">Valoración</h6>
+      <div id="filtroVal"></div>
+      <h6 style="margin: 7px 0;" class="stack">Coste</h6>
+      <div id="filtroCos"></div>
+      <h6 style="margin: 7px 0;" class="stack">Dificultad</h6>
+      <div id="filtroDif"></div>
+    </sidebar>
+    <main style="flex: 0.8; display: flex; flex-direction: column; align-items: center;">
+      <h1 style="text-align: center;">Encuentra tu receta ideal</h1>
+      <div style="display: flex; align-items: center; gap: 5px;">
+        <label><input id="buscador" type="text" placeholder="Buscar"/></label>
+        <button style="border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </div>
+      <div id="recipes" class="recipes">
+      </div>
+    </main>
+  </div>
 </body>
 <script>
-  const recs = document.getElementById("recipes")
-  
-  for (const rec of RECIPES) {
-    recs.innerHTML += createRecipeCard(rec)
+  function renderCards(recetas) {
+    const recs = document.getElementById("recipes")
+    
+    recs.innerHTML = ""
+    for (const rec of recetas) {
+      recs.innerHTML += createRecipeCard(rec)
+    }
   }
 
+  const filroIng = document.getElementById("filroIng")
+  filroIng.innerHTML += ingredientsCheckboxes()
+
+  const filroVal = document.getElementById("filroVal")
+  filtroVal.innerHTML += createStarRating("filtroSelVal", 0)
+
+  const filroCos = document.getElementById("filroCos")
+  filtroCos.innerHTML += createIconRating("filtroSelCos", 0, "eur")
+
+  const filroDif = document.getElementById("filroDif")
+  filtroDif.innerHTML += createIconRating("filtroSelDif", 0, "fire")
+
+  renderCards(RECIPES)
+
+  const buscador = document.getElementById("buscador")
+  buscador.addEventListener("change", (e) => {
+    const inp = e.target.value.toLowerCase()
+    const filtered = RECIPES.filter((r) => r.name.toLowerCase().includes(inp))
+
+    renderCards(filtered)
+  })
 </script>
 </html>

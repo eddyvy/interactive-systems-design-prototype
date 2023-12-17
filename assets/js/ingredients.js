@@ -130,64 +130,6 @@ const INGREDIENTS = [
   { key: 'vinagreDeManzana', name: 'Vinagre de manzana', color: 'error' },
 ]
 
-const RECIPES = [
-  { key: 'polloAsado', name: 'Pollo Asado', img: 'polloasado.webp' },
-  { key: 'bolognesa', name: 'Spaghetti Bolognesa', img: 'bolognesa.jpg' },
-  { key: 'risottoDeSetas', name: 'Risotto de Setas', img: 'rissotto.jpg' },
-  {
-    key: 'ensaladaDeQuinoa',
-    name: 'Ensalada de Quinoa',
-    img: 'ensalada-quinoa.jpg',
-  },
-  { key: 'pizzaMargherita', name: 'Pizza Margherita', img: 'pizza.jpg' },
-]
-
-function createRecipeCard(receta) {
-  return `
-    <a href="#">
-      <article class="card">
-        <img src="assets/img/${receta.img}" />
-        <footer>
-          <h3>${receta.name}</h3>
-          <div style="display: flex; flex-direction: column; align-items: center;">
-            <div>${pickRandomIngredients()
-              .map(
-                (ing) => `<span class="label ${ing.color}">${ing.name}</span>`
-              )
-              .join('')}
-            </div>
-            <div style="display: flex; margin: 10px;">
-              <div>
-                ${createIconRating(
-                  `coste-${receta.key}`,
-                  getRandomRate(),
-                  'eur',
-                  true
-                )}
-              </div>
-              <div>
-                ${createIconRating(
-                  `dif-${receta.key}`,
-                  getRandomRate(),
-                  'fire',
-                  true
-                )}
-              </div>
-            </div>
-            <div>
-              ${createStarRating(
-                `vals-${receta.key}`,
-                getRandomStarRate(),
-                true
-              )}
-            </div>
-          </div>
-        </footer>
-      </article>
-    </a>
-  `
-}
-
 function pickRandomIngredients() {
   const max = 6
   const min = 3
@@ -202,126 +144,23 @@ function pickRandomIngredients() {
   return picked
 }
 
-function createStarRating(id, value, disabled) {
-  return `
-    <div class="rating-group">
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input rating__input--none" checked name="${id}" id="${id}-0" value="0" type="radio">
-      <label aria-label="0 stars" class="rating__label rating__label-star" for="${id}-0">&nbsp;</label>
-      <label aria-label="0.5 stars" class="rating__label rating__label-star rating__label--half" for="${id}-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-05" value="0.5" type="radio"${
-    value === 0.5 ? 'checked' : ''
-  }>
-      <label aria-label="1 star" class="rating__label rating__label-star" for="${id}-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-10" value="1" type="radio"${
-    value === 1 ? 'checked' : ''
-  }>
-      <label aria-label="1.5 star" class="rating__label rating__label-star rating__label--half" for="${id}-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-15" value="1.5" type="radio"${
-    value === 1.5 ? 'checked' : ''
-  }>
-      <label aria-label="2 star" class="rating__label rating__label-star" for="${id}-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-20" value="2" type="radio"${
-    value === 2 ? 'checked' : ''
-  }>
-      <label aria-label="2.5 star" class="rating__label rating__label-star rating__label--half" for="${id}-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-25" value="2.5" type="radio" ${
-    value === 2.5 ? 'checked' : ''
-  }>
-      <label aria-label="3 star" class="rating__label rating__label-star" for="${id}-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-30" value="3" type="radio"${
-    value === 3 ? 'checked' : ''
-  }>
-      <label aria-label="3.5 star" class="rating__label rating__label-star rating__label--half" for="${id}-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-35" value="3.5" type="radio"${
-    value === 3.5 ? 'checked' : ''
-  }>
-      <label aria-label="4 star" class="rating__label rating__label-star" for="${id}-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-40" value="4" type="radio"${
-    value === 4 ? 'checked' : ''
-  }>
-      <label aria-label="4.5 star" class="rating__label rating__label-star rating__label--half" for="${id}-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-45" value="4.5" type="radio"${
-    value === 4.5 ? 'checked' : ''
-  }>
-      <label aria-label="5 star" class="rating__label rating__label-star" for="${id}-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-50" value="5" type="radio"${
-    value === 5 ? 'checked' : ''
-  }>
-    </div>
-  `
+function ingredientTag(ing) {
+  return `<span class="label ${ing.color}">${ing.name}</span>`
 }
 
-function createIconRating(id, value, icon, disabled) {
-  return `
-    <div class="rating-group">
-      <label aria-label="0 ${icon}" class="rating__label" for="${id}-0">&nbsp;</label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input rating__input--none" checked name="${id}" id="${id}-0" value="0" type="radio">
-      <label aria-label="1 ${icon}" class="rating__label" for="${id}-10"><i class="rating__icon rating__icon--${icon} fa fa-${icon}"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-10" value="1" type="radio"${
-    value === 1 ? 'checked' : ''
-  }>
-      <label aria-label="2 ${icon}" class="rating__label" for="${id}-20"><i class="rating__icon rating__icon--${icon} fa fa-${icon}"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-20" value="2" type="radio"${
-    value === 2 ? 'checked' : ''
-  }>
-      <label aria-label="3 ${icon}" class="rating__label" for="${id}-30"><i class="rating__icon rating__icon--${icon} fa fa-${icon}"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-30" value="3" type="radio"${
-    value === 3 ? 'checked' : ''
-  }>
-      <label aria-label="4 ${icon}" class="rating__label" for="${id}-40"><i class="rating__icon rating__icon--${icon} fa fa-${icon}"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-40" value="4" type="radio"${
-    value === 4 ? 'checked' : ''
-  }>
-      <label aria-label="5 ${icon}" class="rating__label" for="${id}-50"><i class="rating__icon rating__icon--${icon} fa fa-${icon}"></i></label>
-      <input ${
-        disabled ? 'disabled' : ''
-      } class="rating__input" name="${id}" id="${id}-50" value="5" type="radio"${
-    value === 5 ? 'checked' : ''
-  }>
-    </div>
-  `
+function ingredientsList(ingrs) {
+  return `<div>${ingrs.map(ingredientTag).join('')}</div>`
 }
 
-function getRandomStarRate() {
-  const steps = (5 - 0.5) / 0.5 + 1
-  const randomStep = Math.floor(Math.random() * steps)
-  const randomNumber = 0.5 + randomStep * 0.5
-
-  return randomNumber
+function ingredientCheckbox(ing) {
+  return `<label for="chk-${ing.key}">
+    <input id="chk-${ing.key}" name="${ing.key}" type="checkbox">
+    <span class="checkable"><span class="label ${ing.color}">${ing.name}</span></span>
+  </label>`
 }
 
-function getRandomRate() {
-  return Math.floor(Math.random() * 5) + 1
+function ingredientsCheckboxes() {
+  return `<div style="height: 100px; overflow-y: scroll; display: grid; grid-template-columns: 1fr;">${INGREDIENTS.map(
+    ingredientCheckbox
+  ).join('')}</div>`
 }
