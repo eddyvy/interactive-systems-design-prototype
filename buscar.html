@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" href="assets/img/diet.png">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script type="text/javascript" src="assets/js/ingredients.js" ></script>
+  <script type="text/javascript" src="assets/js/category.js" ></script>
   <script type="text/javascript" src="assets/js/rating.js" ></script>
   <script type="text/javascript" src="assets/js/recipes.js" ></script>
   <title>AEC | Las mejores recetas</title>
@@ -51,6 +52,8 @@
   <div style="display: flex;">
     <sidebar id="sidebar" style="flex: 0.2; height: 100%; padding-left: 40px;">
       <h4 class="stack">Filtros</h4>
+      <h6 style="margin: 7px 0;" class="stack">Categoría</h6>
+      <div id="filroCat"></div>
       <h6 style="margin: 7px 0;" class="stack">Ingredientes</h6>
       <div id="filroIng"></div>
       <h6 style="margin: 7px 0;" class="stack">Valoración</h6>
@@ -80,6 +83,9 @@
       recs.innerHTML += createRecipeCard(rec)
     }
   }
+
+  const filroCat = document.getElementById("filroCat")
+  filroCat.innerHTML += categoriesCheckboxes()
 
   const filroIng = document.getElementById("filroIng")
   filroIng.innerHTML += ingredientsCheckboxes()
