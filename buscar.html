@@ -4,9 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/rating.css">
   <link rel="icon" type="image/png" href="assets/diet.png">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="text/javascript" src="assets/js/index.js" ></script>
   <title>AEC | Las mejores recetas</title>
+  <style>
+    .img-card {
+      margin: 0;
+      padding: 0;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .recipes {
+      display: grid;
+      grid-auto-flow: dense;
+      grid-auto-rows: 22rem;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      gap: 1rem;
+      padding: 40px;
+    } 
+  </style>
 </head>
 <body>
   <header style="overflow: hidden; height: 53px;">
@@ -30,8 +50,65 @@
   </header>
   <main style="display: flex; flex-direction: column; align-items: center;">
     <h1 style="text-align: center;">Encuentra tu receta ideal</h1>
+    <div style="display: flex; align-items: center; gap: 5px;">
+      <label><input type="text" placeholder="Buscar"/></label>
+      <button style="border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+    <div class="recipes">
+      <div>
+        <article class="card">
+          <img src="assets/bolognesa.jpg" />
+          <footer>
+            <h3>Spaghetti Bolognesa</h3>
+            <span class="ingredients"></span>
+            <span class="coste"></span>
+            <span class="dificultad"></span>
+            <span class="valoracion"></span>
+          </footer>
+        </article>
+      </div>
+      <div>
+        <article class="card">
+          <img src="assets/bolognesa.jpg" />
+          <footer>
+            <h3>Spaghetti Bolognesa</h3>
+            <span class="ingredients"></span>
+            <span class="coste"></span>
+            <span class="dificultad"></span>
+            <span class="valoracion"></span>
+          </footer>
+        </article>
+      </div>
+    </div>
   </main>
 </body>
 <script>
+  const costes = document.getElementsByClassName("coste")
+  let i = 0
+  for (const elem of costes) {
+    elem.innerHTML = createIconRating(`coste-${i}`, getRandomRate(), 'eur', true)
+    i++
+  }
+
+  const difs = document.getElementsByClassName("dificultad")
+  let j = 0
+  for (const elem of difs) {
+    elem.innerHTML = createIconRating(`dif-${j}`, getRandomRate(), 'fire', true)
+    j++
+  }
+
+  const vals = document.getElementsByClassName("valoracion")
+  let k = 0
+  for (const elem of vals) {
+    elem.innerHTML = createStarRating(`vals-${k}`, getRandomStarRate(), true)
+    k++
+  }
+
+  // const ings = document.getElementsByClassName("ingredients")
+  // let l = 0
+  // for (const elem of vals) {
+  //   elem.innerText = JSON.stringify(pickRandomIngredients())
+  //   l++
+  // }
 </script>
 </html>

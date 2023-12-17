@@ -1,0 +1,110 @@
+.rating-group {
+  display: inline-flex;
+}
+
+.rating__icon {
+  pointer-events: none;
+}
+
+.rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* .rating__label-star {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 2rem;
+} */
+
+.rating__label {
+  cursor: pointer;
+  padding: 0 0.3em;
+  font-size: 2rem;
+}
+
+.rating__label-star {
+  padding: 0 0.1em;
+}
+
+.rating__label--half {
+  padding-right: 0;
+  margin-right: -0.6em;
+  z-index: 2;
+}
+
+/* .rating__label {
+  cursor: pointer;
+  padding: 0 0.3em;
+  font-size: 2rem;
+} */
+
+.rating__icon--none {
+  color: #eee;
+}
+
+.rating__input--none:checked + .rating__label .rating__icon--none {
+  color: red;
+}
+
+.rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+  color: #eee;
+}
+
+.rating__input--none:hover + .rating__label .rating__icon--none {
+  color: red;
+}
+
+/* star */
+.rating__icon--star {
+  color: orange;
+}
+.rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+.rating-group:hover .rating__label .rating__icon--star,
+.rating-group:hover .rating__label--half .rating__icon--star {
+  color: orange;
+}
+
+.rating__input:hover ~ .rating__label .rating__icon--star,
+.rating__input:hover ~ .rating__label--half .rating__icon--star {
+  color: #ddd;
+}
+
+/* eur */
+.rating__icon--eur {
+  color:  rgb(41, 161, 57);
+}
+.rating__input:checked ~ .rating__label .rating__icon--eur {
+  color: #ddd;
+}
+
+.rating-group:hover .rating__label .rating__icon--eur,
+.rating-group:hover .rating__label--half .rating__icon--eur {
+  color:  rgb(41, 161, 57);
+}
+
+.rating__input:hover ~ .rating__label .rating__icon--eur,
+.rating__input:hover ~ .rating__label--half .rating__icon--eur {
+  color: #ddd;
+}
+
+/* fire */
+.rating__icon--fire {
+  color:  rgb(168, 15, 15);
+}
+.rating__input:checked ~ .rating__label .rating__icon--fire {
+  color: #ddd;
+}
+
+.rating-group:hover .rating__label .rating__icon--fire,
+.rating-group:hover .rating__label--half .rating__icon--fire {
+  color: rgb(168, 15, 15);
+}
+
+.rating__input:hover ~ .rating__label .rating__icon--fire,
+.rating__input:hover ~ .rating__label--half .rating__icon--fire {
+  color: #ddd;
+}
