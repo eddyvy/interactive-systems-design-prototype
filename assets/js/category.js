@@ -1,9 +1,9 @@
 const CATEGORIES = [
-  { key: 'entrantes', name: 'Entrantes' },
+  { key: 'entrantes', name: 'Entrantes y Aperitivos' },
   { key: 'primeros', name: 'Primeros Platos' },
   { key: 'segundos', name: 'Segundos Platos' },
   { key: 'postres', name: 'Postres' },
-  { key: 'cenas', name: 'Cenas' },
+  { key: 'guarniciones', name: 'Ensaladas y Guarniciones' },
 ]
 
 function pickRandomCategories() {
