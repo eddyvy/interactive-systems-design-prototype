@@ -96,14 +96,6 @@ const INGREDIENTS = [
     calorias: 50,
   },
   {
-    key: 'huevos',
-    name: 'Huevos',
-    color: 'error',
-    cualidades: 'Excelente fuente de proteínas',
-    vitaminas: 'Vitamina D, B12',
-    calorias: 90,
-  },
-  {
     key: 'leche',
     name: 'Leche',
     color: '',
