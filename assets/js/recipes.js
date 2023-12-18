@@ -1,20 +1,20 @@
 const RECIPES = [
-  { key: 'polloAsado', name: 'Pollo Asado', img: 'polloasado.webp' },
+  { key: 'pollo-asado', name: 'Pollo Asado', img: 'polloasado.webp' },
   { key: 'bolognesa', name: 'Spaghetti Bolognesa', img: 'bolognesa.jpg' },
-  { key: 'risottoDeSetas', name: 'Risotto de Setas', img: 'rissotto.jpg' },
+  { key: 'risotto-setas', name: 'Risotto de Setas', img: 'rissotto.jpg' },
   {
-    key: 'ensaladaDeQuinoa',
+    key: 'ensalada-quinoa',
     name: 'Ensalada de Quinoa',
     img: 'ensalada-quinoa.jpg',
   },
-  { key: 'pizzaMargherita', name: 'Pizza Margherita', img: 'pizza.jpg' },
+  { key: 'pizza-margherita', name: 'Pizza Margherita', img: 'pizza.jpg' },
 ]
 
 function createRecipeCard(receta) {
   const randIngr = pickRandomIngredients()
 
   return `
-    <a href="#">
+    <a href="${receta.key}.html">
       <article class="card">
         <img src="assets/img/${receta.img}" />
         <footer>

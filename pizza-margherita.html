@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/rating.css">
+  <link rel="icon" type="image/png" href="assets/img/diet.png">
+  <script type="text/javascript" src="assets/js/ingredients.js" ></script>
+  <script type="text/javascript" src="assets/js/category.js" ></script>
+  <script type="text/javascript" src="assets/js/rating.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>AEC | Pizza Margherita</title>
+  <style>
+    .description {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+
+    @media (min-width: 500px) {
+      .description {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="overflow: hidden; height: 53px;">
+      <nav class="demo" class="pseudo button">
+        <a href="#" class="brand">
+          <img class="logo" src="assets/img/diet.png" />
+          <span>AEC</span>
+        </a>
+        <input id="bmenub" type="checkbox" class="show">
+        <label for="bmenub" class="burger pseudo button"><i class="fa fa-bars" aria-hidden="true"></i></label>
+        <div class="menu">
+          <select style="width: 110px;">
+            <option>Spanish</option>
+            <option>English</option>
+            <option>French</option>
+          </select>
+          <a href="buscar.html" class="pseudo button">Descubrir</a>
+          <a href="publicar.html" class="pseudo button">Publicar</a>
+        </div>
+      </nav>
+  </header>
+  <main style="display: flex; flex-direction: column; align-items: center;">
+    <div style="width: 100%; max-width: 800px; padding: 0 10px 70px;">
+      <h1 style="text-align: center;">Pizza Margherita</h1>
+      <figure style="display: flex; justify-content: center;">
+        <img style="width: 80vw; min-width: 300px; max-width: 600px;" src="assets/img/pizza.jpg" alt="Pizza Margherita">
+      </figure>
+      <section class="description">
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Categorías</h4>
+          <div id="showCat"></div>
+        </div>
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Ingredientes</h4>
+          <div id="showIng"></div>
+        </div>
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Coste</h4>
+          <div id="showCos"></div>
+        </div>
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Dificultad</h4>
+          <div id="showDif"></div>
+        </div>
+      </section>
+      <section style="margin: 30px 0;">
+        <h4>Procedimiento</h4>
+        <article>
+          <p>
+            Para la masa, volcamos en un bol 250 g de harina de fuerza.
+            Aparte, deshacemos 8 g de levadura fresca de panadero en un par de cucharadas
+            de agua templada (unos 30 ml). A continuación, vertemos sobre la harina la
+            levadura disuelta y añadimos 130 ml de agua a temperatura ambiente.
+          </p>
+          <p>
+            Con el horno caliente a máxima potencia, y con calor arriba y abajo,
+            introducimos la pizza solo con la salsa de tomate en el horno y la horneamos 2 minutos.
+            La sacamos del horno y repartimos sobre ella 125 g de queso mozzarella en rodajas.
+          </p>
+        </article>
+      </section>
+      <section class="description">
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">¡Valora la receta!</h4>
+          <div id="inputVal"></div>
+        </div>
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Comparte</h4>
+          <div>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-link" aria-hidden="true"></i>
+            </button>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            </button>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </button>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            </button>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+<script>
+  const showCat = document.getElementById("showCat")
+  showCat.innerHTML += categoriesList(pickRandomCategories())
+
+  const showIng = document.getElementById("showIng")
+  showIng.innerHTML += ingredientsList(pickRandomIngredients())
+
+  const showCos = document.getElementById("showCos")
+  showCos.innerHTML += createIconRating("showSelCos", getRandomRate(), "eur", true)
+
+  const showDif = document.getElementById("showDif")
+  showDif.innerHTML += createIconRating("showSelDif", getRandomRate(), "fire", true)
+
+  const inputVal = document.getElementById("inputVal")
+  inputVal.innerHTML += createStarRating("inputSelVal", 0)
+</script>
+</html>

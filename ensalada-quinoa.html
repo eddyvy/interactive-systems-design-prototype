@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/rating.css">
+  <link rel="icon" type="image/png" href="assets/img/diet.png">
+  <script type="text/javascript" src="assets/js/ingredients.js" ></script>
+  <script type="text/javascript" src="assets/js/category.js" ></script>
+  <script type="text/javascript" src="assets/js/rating.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>AEC | Ensalada de Quinoa</title>
+  <style>
+    .description {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+
+    @media (min-width: 500px) {
+      .description {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="overflow: hidden; height: 53px;">
+      <nav class="demo" class="pseudo button">
+        <a href="#" class="brand">
+          <img class="logo" src="assets/img/diet.png" />
+          <span>AEC</span>
+        </a>
+        <input id="bmenub" type="checkbox" class="show">
+        <label for="bmenub" class="burger pseudo button"><i class="fa fa-bars" aria-hidden="true"></i></label>
+        <div class="menu">
+          <select style="width: 110px;">
+            <option>Spanish</option>
+            <option>English</option>
+            <option>French</option>
+          </select>
+          <a href="buscar.html" class="pseudo button">Descubrir</a>
+          <a href="publicar.html" class="pseudo button">Publicar</a>
+        </div>
+      </nav>
+  </header>
+  <main style="display: flex; flex-direction: column; align-items: center;">
+    <div style="width: 100%; max-width: 800px; padding: 0 10px 70px;">
+      <h1 style="text-align: center;">Ensalada de Quinoa</h1>
+      <figure style="display: flex; justify-content: center;">
+        <img style="width: 80vw; min-width: 300px; max-width: 600px;" src="assets/img/ensalada-quinoa.jpg" alt="Ensalada de Quinoa">
+      </figure>
+      <section class="description">
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Categorías</h4>
+          <div id="showCat"></div>
+        </div>
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Ingredientes</h4>
+          <div id="showIng"></div>
+        </div>
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Coste</h4>
+          <div id="showCos"></div>
+        </div>
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Dificultad</h4>
+          <div id="showDif"></div>
+        </div>
+      </section>
+      <section style="margin: 30px 0;">
+        <h4>Procedimiento</h4>
+        <article>
+          <p>
+            Esta ensalada de quinoa se prepara con queso halloumi a la plancha y
+            nueces como ingredientes principales, y se puede considerar una ensalada
+            altamente nutritiva y saludable, ya que a las ventajas nutricionales de
+            la quinoa unimos todas las propiedades de las nueces, con gran cantidad de omega-3.
+          </p>
+          <p>
+            Enjuagamos muy bien la quinoa bajo el chorro de agua corriente para eliminar la saponina,
+            que le da un sabor amargo. Ponemos en una olla 1 taza al ras de quinoa, y con la misma
+            taza ponemos 2 tazas de agua o caldo de verduras. Llevamos la olla al fuego y cuando
+            rompa a hervir, la tapamos y cocinamos a fuego medio por 15-20 minutos.
+            Vamos a saber que está cocida cuando las semillas se vuelven semitransparentes
+            y les aparece una especie de rabito blanco.
+            No se debe pasar porque quedará pastosa.
+            Una vez cocida, si sobra líquido la escurrimos, y removemos los granos con un tenedor para separarlos.
+          </p>
+        </article>
+      </section>
+      <section class="description">
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">¡Valora la receta!</h4>
+          <div id="inputVal"></div>
+        </div>
+        <div>
+          <h4 style="margin: 7px 0;" class="stack">Comparte</h4>
+          <div>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-link" aria-hidden="true"></i>
+            </button>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            </button>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </button>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            </button>
+            <button class="pseudo" type="button" style="font-size: 0.75em;">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+<script>
+  const showCat = document.getElementById("showCat")
+  showCat.innerHTML += categoriesList(pickRandomCategories())
+
+  const showIng = document.getElementById("showIng")
+  showIng.innerHTML += ingredientsList(pickRandomIngredients())
+
+  const showCos = document.getElementById("showCos")
+  showCos.innerHTML += createIconRating("showSelCos", getRandomRate(), "eur", true)
+
+  const showDif = document.getElementById("showDif")
+  showDif.innerHTML += createIconRating("showSelDif", getRandomRate(), "fire", true)
+
+  const inputVal = document.getElementById("inputVal")
+  inputVal.innerHTML += createStarRating("inputSelVal", 0)
+</script>
+</html>
