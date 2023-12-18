@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/rating.css">
+  <link rel="icon" type="image/png" href="assets/img/diet.png">
+  <script type="text/javascript" src="assets/js/ingredients.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>AEC | Salud y Nutrición</title>
+</head>
+<body>
+  <header style="overflow: hidden; height: 53px;">
+      <nav class="demo" class="pseudo button">
+        <a href="#" class="brand">
+          <img class="logo" src="assets/img/diet.png" />
+          <span>AEC</span>
+        </a>
+        <input id="bmenub" type="checkbox" class="show">
+        <label for="bmenub" class="burger pseudo button"><i class="fa fa-bars" aria-hidden="true"></i></label>
+        <div class="menu">
+          <select style="width: 110px;">
+            <option>Spanish</option>
+            <option>English</option>
+            <option>French</option>
+          </select>
+          <a href="buscar.html" class="pseudo button">Descubrir</a>
+          <a href="publicar.html" class="pseudo button">Publicar</a>
+          <a href="salud.html" class="button">Salud</a>
+        </div>
+      </nav>
+  </header>
+  <main style="display: flex; flex-direction: column; align-items: center;">
+    <div style="width: 100%; max-width: 800px; padding: 0 10px 70px;">
+      <h1 style="text-align: center;">Salud y Nutrición</h1>
+      <figure style="display: flex; justify-content: center;">
+        <img style="width: 80vw; min-width: 300px; max-width: 600px;" src="assets/img/piramide_nutricional.webp" alt="Pollo Asado">
+      </figure>
+      <section style="margin: 30px 0;">
+        <h3>Ingredientes</h3>
+        <p>
+          Aportan proteínas de alta calidad, hierro, zinc y vitaminas del grupo B.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Ingrediente</th>
+              <th>Cualidades</th>
+              <th>Aporte Calórico (cal)</th>
+              <th>Vitaminas y Minerales</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </section>
+      <section style="margin: 30px 0;">
+        <h3>La Pirámide Nutricional</h3>
+        <p>
+          En nutrición, la pirámide alimenticia nos sirve para dar una referencia de
+          la proporción que nuestro cuerpo necesita para mantener una dieta sana,
+          equilibrada y balanceada. Se recomienda la ingesta diaria de 55% de carbohidratos
+          (variable en función de la actividad física), 30% de grasas y 15% de proteínas,
+          vitaminas, minerales y fibras. La definición de la pirámide ha sido criticada
+          porque su composición podría haber sido influida por grupos de presión de empresas
+          de alimentación, y por no indicar con claridad el máximo y el mínimo número de
+          raciones recomendadas de cada grupo.
+        </p>
+        <p>
+          La olla alimenticia es una derivación de la pirámide alimenticia la cual contiene
+          una referencia gráfica de la cantidad de los diferentes grupos de alimentos que
+          debemos consumir diariamente para mantenerse saludables.
+        </p>
+      </section>
+    </div>
+  </main>
+</body>
+<script>
+  const tableBody = document.getElementById("table-body")
+  tableBody.innerHTML = INGREDIENTS.map((ing) => `
+  <tr>
+    <td>${ing.name}</td>
+    <td>${ing.cualidades}</td>
+    <td>${ing.calorias}</td>
+    <td>${ing.vitaminas}</td>
+  </tr>
+  `).join('')
+</script>
+</html>
